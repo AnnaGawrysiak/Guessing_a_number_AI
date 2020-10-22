@@ -9,7 +9,7 @@ class Game
         int typowana;
         bool czy_wygrana = false;
 
-        public:enum zakres_trafien
+        enum zakres_trafien
         {
           wiekszy,
           mniejszy,
@@ -29,7 +29,7 @@ class Game
 
         int wczytaj_wartosc();
 
-        int sprawdzenie_liczby(int typowana_, int wylosowana_);
+        int sprawdzenie_liczby(int wylosowana_);
 
         bool sprawdzenie_czy_wygrana();
 

@@ -2,6 +2,7 @@
 #include <iostream>
 #include <ctime>
 #include <cstdlib>
+#include <vector>
 
 using namespace std;
 
@@ -15,40 +16,51 @@ Game_AI::~Game_AI()
     //dtor
 }
 
- void Game_AI::zmien_zakres(int wynik_porownania, int &min_, int &max_)
+ void Game_AI::zmien_zakres(int wynik_porownania)
+ // wiekszy, mniejszy, rowny
     {
-        cout << "Wynik porownania: " << wynik_porownania << endl;
-        cout << "typ_AI" << typ_AI << endl;
+        //cout << "Wynik porownania: " << wynik_porownania << endl;
+        cout << "Typ AI: " << typ_AI << endl;
 
-        if (wynik_porownania == 0 && typ_AI > min_)
+        if (wynik_porownania == 0 && typ_AI > zakres_min)
               {
-                  min_ = typ_AI+1;
-                  cout << "Nowy zakres min: " << min_ << endl;
+                  zakres_min = typ_AI+1;
+                  cout << "Nowy zakres min: " << zakres_min << endl;
               }
 
-        if (wynik_porownania == 1 && typ_AI < max_)
+        else if (wynik_porownania == 1 && typ_AI < zakres_max)
             {
-                max_ = typ_AI-1;
-                cout << "Nowy zakres max: " << max_ << endl;
+                zakres_max = typ_AI-1;
+                cout << "Nowy zakres max: " << zakres_max << endl;
             }
 
 
-        if (wynik_porownania == 2)
-            cout << "Wygrana z AI" << endl;
+        else if (wynik_porownania == 2)
+            cout << "Wygrana AI" << endl;
 
     }
 
 
-    int Game_AI::typuj_liczbe(int &zakres_min_, int &zakres_max_)
+    int Game_AI::typuj_liczbe()
     {
+
      srand (time (0));
 
-     cout << "zakres_min" << zakres_min_ << endl;
-     cout << "zakres_max" << zakres_max_ << endl;
+     cout << "zakres_min" << zakres_min << endl;
+     cout << "zakres_max" << zakres_max << endl;
 
-    typ_AI =( rand() % zakres_max_ ) + zakres_min_;
+    typ_AI =( rand() % (zakres_max - zakres_min + 1) + zakres_min);
 
      cout << "Wylosowana przez AI: " << typ_AI << endl;
+
+    // vector_typow_AI.push_back(typ_AI);
+
+    // for (std::vector<int>::iterator it = vector_typow_AI.begin() ; it != vector_typow_AI.end(); ++it)
+
+          //  {
+           //   if (typ_AI == *it)
+            //    return Game_AI::typuj_liczbe();
+           // }
 
      return typ_AI;
     }
@@ -58,27 +70,9 @@ Game_AI::~Game_AI()
         zakres_min = zakres_min_;
     }
 
-    int Game_AI::get_zakres_min()
-    {
-        return zakres_min;
-    }
-
     void Game_AI::set_zakres_max(int zakres_max_)
     {
         zakres_max = zakres_max_;
     }
 
-    int Game_AI::get_zakres_max()
-    {
-        return zakres_max;
-    }
 
-    void Game_AI::set_typ_AI(int typ_AI_)
-    {
-        typ_AI = typ_AI_;
-    }
-
-    int Game_AI::get_typ_AI()
-    {
-        return typ_AI;
-    }

@@ -29,43 +29,46 @@ using namespace std;
 
     int Game::wczytaj_wartosc()
     {
-        cout << "Wytypuj swoja liczbe: ";
+        cout << "Wytypuj swoja liczbe z zakresu od 1 do 100: ";
         cin >> typowana;
 
     return typowana;
     }
 
 
-    int Game::sprawdzenie_liczby(int typowana_, int wylosowana_)
+    int Game::sprawdzenie_liczby(int wylosowana_)
     {
 
 
-         if (typowana_ == wylosowana_)
+         if (typowana == wylosowana_)
             //return zakres_trafien :: rowny;
            {
             cout << rowny << endl;
-            return 2;
+            czy_wygrana = true;
+            return rowny;
            }
 
-        if (typowana_ > wylosowana_)
+        if (typowana > wylosowana_)
         {
             cout << "Liczba wybrana przez uzytkownika jest wieksza niz przez AI" << endl;
            // return zakres_trafien :: wiekszy;
-           return 0;
+           return wiekszy;
         }
 
 
-         if (typowana_ < wylosowana_)
+         if (typowana < wylosowana_)
          {
         cout << "Liczba wybrana przez uzytkownika jest mniejsza niz przez AI" << endl;
-         return 1;
+         return mniejszy;
          }
 
-
-            //return zakres_trafien :: mniejszy;
     }
 
     bool Game::sprawdzenie_czy_wygrana()
     {
+        if (czy_wygrana == true)
+            return true;
+
+        else
         return false;
     }

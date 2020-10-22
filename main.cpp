@@ -17,30 +17,29 @@
     graAI.set_zakres_min(1);
     graAI.set_zakres_max(100);
 
-    int wczytana_przez_uzytownika = gra.wczytaj_wartosc();
+    gra.wczytaj_wartosc();
 
-    int min_ = graAI.get_zakres_min();
+    int wynik_losowania =  graAI.typuj_liczbe();
 
-    int max_ = graAI.get_zakres_max();
+    int porownanie = gra.sprawdzenie_liczby(wynik_losowania);
 
-    int wynik_losowania =  graAI.typuj_liczbe(min_, max_);
+    bool czy_wygrana = gra.sprawdzenie_czy_wygrana();
 
-    int porownanie = gra.sprawdzenie_liczby(wczytana_przez_uzytownika, wynik_losowania);
-
-    //int i = 0;
+    int runda = 1;
 
    do
     {
-    graAI.zmien_zakres(porownanie, min_, max_);
-    cout << "Zakres min w main: " << min_ << endl;
-    cout << "Zakres max w main: " << max_ << endl;
-    wynik_losowania =  graAI.typuj_liczbe(min_, max_);
-    porownanie = gra.sprawdzenie_liczby(wczytana_przez_uzytownika, wynik_losowania);
-    //i++;
-    } //while (i != 10);
-    while(porownanie != 2);
+        graAI.zmien_zakres(porownanie);
+        wynik_losowania =  graAI.typuj_liczbe();
+        porownanie = gra.sprawdzenie_liczby(wynik_losowania);
+        czy_wygrana = gra.sprawdzenie_czy_wygrana();
+        runda ++;
 
-    // wejdz w petle. sprawdz warunek zwyciestwa.
+        cout << endl;
+    }while(czy_wygrana == false);
+
+    if (czy_wygrana == true)
+        cout << "Brawa dla AI! W rundzie " << runda << " komputer odgadl wytypowana liczbe: " << wynik_losowania << endl;
 
      return 0;
  }
