@@ -1,5 +1,6 @@
 #pragma once
 #include <vector>
+
 using namespace std;
 
 class Game_AI
@@ -12,6 +13,8 @@ class Game_AI
 
     int typuj_liczbe();
 
+    bool czyBylaWylosowana(int temp, vector <int> vector_typow_AI);
+
     void set_zakres_min(int zakres_min_);
 
     void set_zakres_max(int zakres_max_);
@@ -19,9 +22,10 @@ class Game_AI
     private:
 
         int typ_AI;
+        int temp;
         int zakres_min;
         int zakres_max;
-       // vector <int> vector_typow_AI;
+        vector <int> vector_typow_AI;
 
 
 };
