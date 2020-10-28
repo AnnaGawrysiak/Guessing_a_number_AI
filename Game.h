@@ -5,15 +5,15 @@ class Game
 {
      private:
 
-        int wylosowana;
-        int typowana;
-        bool czy_wygrana = false;
+        int AI_type;
+        int user_type;
+        bool if_won = false;
 
-        enum zakres_trafien
+        enum scope
         {
-          wiekszy,
-          mniejszy,
-          rowny,
+          bigger,
+          smaller,
+          equal,
         };
 
 
@@ -21,17 +21,17 @@ class Game
 
         Game();
 
-        Game(int wylosowana_, int typowana_, int czy_wygrana_);
+        Game(int AI_type_, int user_type_, int if_won_);
 
         Game(const Game & P1);
 
         virtual ~Game();
 
-        int wczytaj_wartosc();
+        int load_value();
 
-        int sprawdzenie_liczby(int wylosowana_);
+        int comparing_numbers(int AI_type_);
 
-        bool sprawdzenie_czy_wygrana();
+        bool checking_if_won();
 
 
 };

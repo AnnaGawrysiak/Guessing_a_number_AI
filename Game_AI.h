@@ -1,6 +1,5 @@
 #pragma once
 #include <vector>
-
 using namespace std;
 
 class Game_AI
@@ -9,23 +8,18 @@ class Game_AI
         Game_AI();
         virtual ~Game_AI();
 
-    void zmien_zakres(int wynik_porownania);
+    void change_scope(int comparison_result);
 
-    int typuj_liczbe();
+    int AI_guess();
 
-    bool czyBylaWylosowana(int temp, vector <int> vector_typow_AI);
+    void set_min_scope(int min_scope_);
 
-    void set_zakres_min(int zakres_min_);
-
-    void set_zakres_max(int zakres_max_);
+    void set_max_scope(int max_scope_);
 
     private:
 
-        int typ_AI;
-        int temp;
-        int zakres_min;
-        int zakres_max;
-        vector <int> vector_typow_AI;
-
+        int AI_type;
+        int min_scope;
+        int max_scope;
 
 };

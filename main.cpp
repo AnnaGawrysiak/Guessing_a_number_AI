@@ -1,6 +1,4 @@
 #include <iostream>
-#include <ctime>
-#include <cstdlib>
 #include "Game.h"
 #include "Game_AI.h"
 
@@ -10,36 +8,40 @@
  int main()
  {
 
-    Game gra;
+    Game game;
 
-    Game_AI graAI;
+    Game_AI gameAI;
 
-    graAI.set_zakres_min(1);
-    graAI.set_zakres_max(100);
+    gameAI.set_min_scope(1);
+    gameAI.set_max_scope(100);
 
-    gra.wczytaj_wartosc();
+    game.load_value();
 
-    int wynik_losowania =  graAI.typuj_liczbe();
+    int AI_guess =  gameAI.AI_guess();
 
-    int porownanie = gra.sprawdzenie_liczby(wynik_losowania);
+    int comparison = game.comparing_numbers(AI_guess);
 
-    bool czy_wygrana = gra.sprawdzenie_czy_wygrana();
+    bool checking_if_won = game.checking_if_won();
 
-    int runda = 1;
+    int round = 1;
 
-   do
+    gameAI.change_scope(comparison);
+
+    cout << endl;
+
+   while(checking_if_won == false)
     {
-        graAI.zmien_zakres(porownanie);
-        wynik_losowania =  graAI.typuj_liczbe();
-        porownanie = gra.sprawdzenie_liczby(wynik_losowania);
-        czy_wygrana = gra.sprawdzenie_czy_wygrana();
-        runda ++;
+        AI_guess =  gameAI.AI_guess();
+        comparison = game.comparing_numbers(AI_guess);
+        gameAI.change_scope(comparison);
+        checking_if_won = game.checking_if_won();
+        round ++;
 
         cout << endl;
-    }while(czy_wygrana == false);
+    };
 
-    if (czy_wygrana == true)
-        cout << "Brawa dla AI! W rundzie " << runda << " komputer odgadl wytypowana liczbe: " << wynik_losowania << endl;
+    if (checking_if_won == true)
+        cout << "Congratulations AI! In round " << round << " AI guessed the right number: " << AI_guess << endl;
 
      return 0;
  }

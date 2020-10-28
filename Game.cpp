@@ -1,5 +1,6 @@
 #include "Game.h"
 #include <iostream>
+
 using namespace std;
 
 
@@ -8,65 +9,64 @@ using namespace std;
 
         }
 
-        Game::Game(int wylosowana_, int typowana_, int czy_wygrana_)
+        Game::Game(int AI_type_, int user_type_, int if_won_)
         {
-            wylosowana = wylosowana_;
-            typowana = typowana_;
-            czy_wygrana = czy_wygrana_;
+            AI_type = AI_type_;
+            user_type = user_type_;
+            if_won = if_won_;
         }
 
         Game::Game(const Game & P1)
         {
 
-            wylosowana = P1.wylosowana;
-            typowana = P1.typowana;
-            czy_wygrana = P1.czy_wygrana;
+            AI_type = P1.AI_type;
+            user_type = P1.user_type;
+            if_won = P1.if_won;
         }
 
     Game::~Game()
     {
     }
 
-    int Game::wczytaj_wartosc()
+    int Game::load_value()
     {
         cout << "Wytypuj swoja liczbe z zakresu od 1 do 100: ";
-        cin >> typowana;
+        cin >> user_type;
 
-    return typowana;
+    return user_type;
     }
 
 
-    int Game::sprawdzenie_liczby(int wylosowana_)
+    int Game::comparing_numbers(int AI_type_)
     {
 
 
-         if (typowana == wylosowana_)
-            //return zakres_trafien :: rowny;
+         if (user_type == AI_type_)
+
            {
-            cout << rowny << endl;
-            czy_wygrana = true;
-            return rowny;
+            cout << equal << endl;
+            if_won = true;
+            return equal;
            }
 
-        if (typowana > wylosowana_)
+        if (user_type > AI_type_)
         {
-            cout << "Liczba wybrana przez uzytkownika jest wieksza niz przez AI" << endl;
-           // return zakres_trafien :: wiekszy;
-           return wiekszy;
+            cout << "Number chosen by the user is bigger than AI's type" << endl;
+           return bigger;
         }
 
 
-         if (typowana < wylosowana_)
+         if (user_type < AI_type_)
          {
-        cout << "Liczba wybrana przez uzytkownika jest mniejsza niz przez AI" << endl;
-         return mniejszy;
+        cout << "Number chosen by the user is smaller than AI's type" << endl;
+         return smaller;
          }
 
     }
 
-    bool Game::sprawdzenie_czy_wygrana()
+    bool Game::checking_if_won()
     {
-        if (czy_wygrana == true)
+        if (if_won == true)
             return true;
 
         else
